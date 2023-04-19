@@ -27,3 +27,6 @@ class Hats(models.Model):
 
     def get_api_url(self):
         return reverse("api_loction", kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return f"{self.id}, {self.name}"
