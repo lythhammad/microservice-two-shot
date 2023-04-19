@@ -3,7 +3,7 @@
 Team:
 
 Mo - Shoes
-Lyth - Hats hats
+Lyth - Hats
 
 ## Design
 
