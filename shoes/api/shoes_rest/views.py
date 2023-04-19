@@ -42,7 +42,7 @@ class ShoeDetailEncoder(ModelEncoder):
 def api_list_shoes(request, bin_vo_id=None):
     if request.method == "GET":
         if bin_vo_id is not None:
-            shoes = Shoe.objects.filter()
+            shoes = Shoe.objects.filter(bin=bin_vo_id)
         return JsonResponse(
             {"shoes":shoes},
             encoder=ShoeListEncoder

@@ -22,4 +22,4 @@ def __str__(self):
     return self.name
 
 def get_api_url(self):
-    return reverse("api_show_shoe", kwargs={"pk": self.pk})
+    return reverse("api_bin", kwargs={"pk": self.pk})
