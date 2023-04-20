@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Location(models.Model):
-    closet_name = models.CharField(max_length=100)
+    closet_name = models.CharField(max_length = 100)
     section_number = models.PositiveSmallIntegerField()
     shelf_number = models.PositiveSmallIntegerField()
 
@@ -18,7 +18,7 @@ class Location(models.Model):
 
 
 class Bin(models.Model):
-    closet_name = models.CharField(max_length=100)
+    closet_name = models.CharField(max_length = 100)
     bin_number = models.PositiveSmallIntegerField()
     bin_size = models.PositiveSmallIntegerField()
 

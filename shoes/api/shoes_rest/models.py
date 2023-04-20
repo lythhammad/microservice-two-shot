@@ -19,7 +19,7 @@ class Shoe(models.Model):
     )
 
 def __str__(self):
-    return self.name
+    return f"{self.id}, {self.closet_name}, {self.bin_number}"
 
 def get_api_url(self):
     return reverse("api_bin", kwargs={"pk": self.pk})
