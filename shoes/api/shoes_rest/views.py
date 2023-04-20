@@ -52,7 +52,7 @@ def api_list_shoes(request, bin_vo_id=None):
         else:
             shoes = Shoe.objects.all()
         return JsonResponse(
-            {"shoes": shoes},
+            {"shoes":shoes},
             encoder=ShoeListEncoder
         )
     else:
