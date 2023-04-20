@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 import json
 from common.json import ModelEncoder
-from .models import Hat, LocationVO
+from .models import Hats, LocationVO
 from django.http import JsonResponse
 # Create your views here.
 
@@ -18,7 +18,7 @@ class LocationVODetailEncoder(ModelEncoder):
 
 
 class HatListEncoder(ModelEncoder):
-    model = Hat
+    model = Hats
     properties = [
         "id",
         "name",
@@ -31,7 +31,7 @@ class HatListEncoder(ModelEncoder):
 
 
 class HatDetailEncoder(ModelEncoder):
-    model = Hat
+    model = Hats
     properties = [
         "name",
         "fabric",
@@ -48,9 +48,9 @@ class HatDetailEncoder(ModelEncoder):
 def api_list_hats(request, location_vo_id=None):
     if request.method == "GET":
         if location_vo_id is not None:
-            hats = Hat.objects.filter(location=location_vo_id)
+            hats = Hats.objects.filter(location=location_vo_id)
         else:
-            hats = Hat.objects.all()
+            hats = Hats.objects.all()
         return JsonResponse(
             {"hats": hats},
             encoder=HatListEncoder
@@ -66,17 +66,18 @@ def api_list_hats(request, location_vo_id=None):
                 {"message": "Invalid location id"},
                 status=400,
             )
-        hat = Hat.objects.create(**content)
+        hat = Hats.objects.create(**content)
         return JsonResponse(
             hat,
             encoder=HatDetailEncoder,
             safe=False,
         )
 
+
 @require_http_methods(["DELETE", "GET"])
 def api_show_hat(request, pk):
     if request.method == "GET":
-        hat = Hat.objects.get(id=pk)
+        hat = Hats.objects.get(id=pk)
         return JsonResponse(
             hat,
             encoder=HatDetailEncoder,
@@ -84,7 +85,7 @@ def api_show_hat(request, pk):
         )
     else:
         try:
-            count, _ = Hat.objects.filter(id=pk).delete()
+            count, _ = Hats.objects.filter(id=pk).delete()
             return JsonResponse({"deleted": count > 0})
-        except Hat.DoesNotExist:
+        except Hats.DoesNotExist:
             return JsonResponse({"Note": "Hat does not exist"})
