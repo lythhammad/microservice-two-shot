@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 import json
 from common.json import ModelEncoder
-from .models import Hats, LocationVO
+from .models import Hat, LocationVO
 from django.http import JsonResponse
 # Create your views here.
 
@@ -18,7 +18,7 @@ class LocationVODetailEncoder(ModelEncoder):
 
 
 class HatListEncoder(ModelEncoder):
-    model = Hats
+    model = Hat
     properties = [
         "id",
         "name",
@@ -31,7 +31,7 @@ class HatListEncoder(ModelEncoder):
 
 
 class HatDetailEncoder(ModelEncoder):
-    model = Hats
+    model = Hat
     properties = [
         "name",
         "fabric",
@@ -48,9 +48,9 @@ class HatDetailEncoder(ModelEncoder):
 def api_list_hats(request, location_vo_id=None):
     if request.method == "GET":
         if location_vo_id is not None:
-            hats = Hats.objects.filter(location=location_vo_id)
+            hats = Hat.objects.filter(location=location_vo_id)
         else:
-            hats = Hats.objects.all()
+            hats = Hat.objects.all()
         return JsonResponse(
             {"hats": hats},
             encoder=HatListEncoder
@@ -66,7 +66,7 @@ def api_list_hats(request, location_vo_id=None):
                 {"message": "Invalid location id"},
                 status=400,
             )
-        hat = Hats.objects.create(**content)
+        hat = Hat.objects.create(**content)
         return JsonResponse(
             hat,
             encoder=HatDetailEncoder,
@@ -77,7 +77,7 @@ def api_list_hats(request, location_vo_id=None):
 @require_http_methods(["DELETE", "GET"])
 def api_show_hat(request, pk):
     if request.method == "GET":
-        hat = Hats.objects.get(id=pk)
+        hat = Hat.objects.get(id=pk)
         return JsonResponse(
             hat,
             encoder=HatDetailEncoder,
@@ -85,7 +85,7 @@ def api_show_hat(request, pk):
         )
     else:
         try:
-            count, _ = Hats.objects.filter(id=pk).delete()
+            count, _ = Hat.objects.filter(id=pk).delete()
             return JsonResponse({"deleted": count > 0})
-        except Hats.DoesNotExist:
+        except Hat.DoesNotExist:
             return JsonResponse({"Note": "Hat does not exist"})

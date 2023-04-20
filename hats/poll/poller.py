@@ -5,16 +5,16 @@ import time
 import json
 import requests
 
-from hats_rest.models import LocationVO
 
 
-sys.path.append("hats/api")
+
+sys.path.append("/hats/api")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hats_project.settings")
 django.setup()
 
 # Import models from hats_rest, here.
 # from hats_rest.models import Something
-
+from hats_rest.models import LocationVO
 
 def get_locations():
     response = requests.get("http://wardrobe-api:8000/api/locations/")
@@ -25,7 +25,7 @@ def get_locations():
             section_number=location["section_number"],
             shelf_number=location["shelf_number"],
             closet_name=location["closet_name"],
-            defaults={"id": location["id"]},
+            defaults={"id": location["id"]}
         )
 
 
