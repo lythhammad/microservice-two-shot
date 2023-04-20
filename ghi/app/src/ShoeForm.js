@@ -91,19 +91,19 @@ class ShoeForm extends React.Component {
                 <form onSubmit={this.handleSubmit} id="shoe-form">
             <div className="form-floating mb-3">
                 <input onChange={this.handleModelNameChange} value={this.state.modelName} placeholder="Name" required type="text" name="model_name" id="model_name" className="form-control"/>
-                <label html For="model_name">Name</label>
+                <label htmlFor="model_name">Name</label>
             </div>
             <div className="form-floating mb-3">
                 <input onChange={this.handleColorChange} value={this.state.color} placeholder="Color" required type="text" name="color" id="color" className="form-control"/>
-                <label html For="color">Color</label>
+                <label htmlFor="color">Color</label>
             </div>
             <div className="form-floating mb-3">
                 <input onChange={this.handleManufacturerChange} value={this.state.manufacturer} placeholder="Manufacturer" required type="text" name="manufacturer" id="manufacturer" className="form-control"/>
-                <label html For="manufacturer">Manufacturer</label>
+                <label htmlFor="manufacturer">Manufacturer</label>
             </div>
             <div className="form-floating mb-3">
                 <input onChange={this.handleShoeURLChange} value={this.state.shoeURL} placeholder="Upload a picture" required type="url" name="Shoe_url" id="Shoe_url" className="form-control"/>
-                <label html For="Shoe_url">Shoe Picture Url</label>
+                <label htmlFor="Shoe_url">Shoe Picture Url</label>
             </div>
             <div className="mb-3">
                 <select value={this.state.bin} onChange={this.handleBinChange} required id="bin" name="bin" className="form-select">

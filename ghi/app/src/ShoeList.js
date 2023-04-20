@@ -1,4 +1,3 @@
-import { redirect } from 'react-router-dom'
 import {useState, useEffect} from 'react';
 
 function ShoeList(props) {
@@ -14,7 +13,6 @@ function ShoeList(props) {
   const handleDelete = async (id) => {
     const resp = await fetch(`http://localhost:8080/api/shoes/${id}`, { method:"DELETE"})
     const data = await resp.json()
-    getData()
     window.location = "/shoes"
   }
 
