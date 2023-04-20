@@ -12,7 +12,7 @@ class LocationVO(models.Model):
         return f"{self.closer_name}, {self.id}"
 
 
-class Hats(models.Model):
+class Hat(models.Model):
     name = models.CharField(max_length=100)
     fabric = models.CharField(max_length=100)
     color = models.CharField(max_length=100)
