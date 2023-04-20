@@ -24,8 +24,8 @@ class HatForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        data.style_name = data.styleName;
-        data.picture_url = data.pictureUrl;
+        data.styleName = data.styleName;
+        data.pictureUrl = data.pictureUrl;
         delete data.styleName;
         delete data.pictureUrl;
         delete data.locations;
