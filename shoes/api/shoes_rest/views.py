@@ -8,7 +8,7 @@ from .models import Shoe, BinVO
 
 class BinVODetailEncoder(ModelEncoder):
     model = BinVO
-    property = [
+    properties = [
         "closet_name",
         "bin_number",
         "bin_size",
@@ -16,26 +16,22 @@ class BinVODetailEncoder(ModelEncoder):
     ]
 
 
-class ShoeListEncoder(ModelEncoder):
-    model = Shoe
-    properties = [
-        "id",
-        "manufacturer",
-        "name",
-    ]
-
-
-def get_extra_data(self, o):
-    return {"closet_name": o.bin.closet_name}
-
+# class ShoeListEncoder(ModelEncoder):
+#     model = Shoe
+#     properties = [
+#         "id",
+#         "manufacturer",
+#         "model_name",
+#     ]
 
 class ShoeDetailEncoder(ModelEncoder):
     model = Shoe
     properties = [
+        "id",
         "manufacturer",
         "model_name",
         "color",
-        "picture_url"
+        "picture_url",
         "bin"
     ]
 
@@ -47,13 +43,11 @@ class ShoeDetailEncoder(ModelEncoder):
 @require_http_methods(["GET", "POST"])
 def api_list_shoes(request, bin_vo_id=None):
     if request.method == "GET":
-        if bin_vo_id is not None:
-            shoes = Shoe.objects.filter(bin=bin_vo_id)
-        else:
-            shoes = Shoe.objects.all()
+        shoes = Shoe.objects.all()
         return JsonResponse(
-            {"shoes":shoes},
-            encoder=ShoeListEncoder
+            shoes,
+            encoder=ShoeDetailEncoder,
+            safe=False
         )
     else:
         content = json.loads(request.body)
