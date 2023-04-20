@@ -55,4 +55,4 @@ function HatsList(props) {
     );
 }
 
-export default HatsList;
+export default HatList;
