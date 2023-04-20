@@ -73,6 +73,7 @@ def api_locations(request):
             safe=False,
         )
 
+
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_location(request, pk):
     """
