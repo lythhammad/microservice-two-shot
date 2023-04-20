@@ -75,15 +75,15 @@ class NewShoe extends React.Component {
             const url = 'http://localhost:8100/api/bins';
             const response = await fetch(url);
             if (response.ok) {
-              const data = await response.json();
-              this.setState({bins:data.bins});
-              console.log(data);
+                const data = await response.json();
+                this.setState({bins:data.bins});
+                console.log(data);
             }
-          }
+            }
 
     render();{
-        return(
-            <div className='row'>
+        return (
+        <div className='row'>
                 <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                 <h1>Add new shoe</h1>
@@ -121,7 +121,7 @@ class NewShoe extends React.Component {
             </div>
             </div>
             </div>
-         )
+        )
     }
 
 export default ShoeForm;

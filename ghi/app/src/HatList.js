@@ -1,15 +1,14 @@
 import { redirect } from 'react-router-dom'
 import {useState, useEffect} from 'react';
 
-function HatsList(props) {
+function HatList(props) {
     console.log(props)
-    const [hats, setHats] = useState([])
-
+    const [hats, setHat] = useState([])
 
     const getData = async () => {
         const resp = await fetch('http://localhost:8090/api/hats/')
         const data = await resp.json()
-        setHats(data)
+        setHat(data)
     }
 
     const handleDelete = async (id) => {
@@ -55,4 +54,4 @@ function HatsList(props) {
     );
 }
 
-export default HatsList;
+export default HatList;
